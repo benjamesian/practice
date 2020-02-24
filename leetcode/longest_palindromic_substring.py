@@ -18,9 +18,7 @@ class Solution:
 
             if len(longest) < 2 * i - 1 >= 2 * j:
                 longest = s[ix - i + 1: ix + i]
-                ix += i
             elif len(longest) < 2 * j:
                 longest = s[ix - j + 1: ix + 1 + j]
-                ix += j
 
         return longest
