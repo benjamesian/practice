@@ -3,8 +3,8 @@
 //https://leetcode.com/problems/string-to-integer-atoi/
 int myAtoi(char *str)
 {
-    int negative = 0;
-    int out = 0;
+    int negative = 0, out = 0;
+
     while (*str == ' ')
         str++;
     if (*str == '-')
