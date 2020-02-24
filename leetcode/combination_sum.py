@@ -17,8 +17,7 @@ class Solution:
         if candidates[0] == target:
             return [[candidates[0]]]
 
-        sols += [[candidates[0]] + comb for comb in
+        sols += [[candidates[0], *comb] for comb in
                  self.helper(candidates, target - candidates[0])]
-        sols += [comb for comb in self.helper(candidates[1:], target)]
 
-        return sols
+        return sols + self.helper(candidates[1:], target)
