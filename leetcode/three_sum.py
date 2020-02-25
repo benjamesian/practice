@@ -8,25 +8,25 @@ class Solution:
         nums.sort()
         ht = Counter(nums)
         solutions = []
-        n = 0
-        s = set()
+        n = i = 0
 
-        def twoSum(nums: List[int], target: int) -> List[List[int]]:
-            for e in nums:
-                if 2 * e > target or (e * 2 == target and ht[e] < 2):
-                    break
-                if e in s:
+        def twoSum(target: int) -> List[List[int]]:
+            seen = set()
+            for e in nums[i+1:]:
+                if e in seen:
                     continue
+                if e > target - e:
+                    break
+                if e == target - e and ht[e] < 2:
+                    break
                 if ht.get(target - e):
-                    solutions.append([n, e, target - e])
-                    s.add(e)
-            s.clear()
+                    solutions.append([-target, e, target - e])
+                    seen.add(e)
 
-        i = 0
         while i < len(nums) - 2:
             n = nums[i]
             ht[n] -= 1
-            twoSum(nums[i+1:], -nums[i])
+            twoSum(-n)
             i += ht[n] + 1
             del ht[n]
 
